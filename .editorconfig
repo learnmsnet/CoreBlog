@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CA2235: Mark all non-serializable fields
+dotnet_diagnostic.CA2235.severity = silent
+
+# IDE0008: Use explicit type
+# csharp_style_var_for_built_in_types = true:silent

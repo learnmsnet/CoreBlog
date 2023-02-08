@@ -17,7 +17,7 @@ public class FileUserService : IUserService
         IHttpContextAccessor contextAccessor,
         IConfiguration config)
     {
-        _folder = Path.Combine(env.WebRootPath, "Data\\" + USERS);
+        _folder = Path.Combine(env.WebRootPath, "Data", USERS);
         _contextAccessor = contextAccessor;
         _config = config;
         Initialize();

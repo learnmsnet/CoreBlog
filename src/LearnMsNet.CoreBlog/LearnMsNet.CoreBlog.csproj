@@ -11,9 +11,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.91" />
+		<PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
 		<PackageReference Include="System.Linq.Async" Version="6.0.1" />
 		<PackageReference Include="WebEssentials.AspNetCore.OutputCaching" Version="1.0.43" />
+		<PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.65" />
 		<PackageReference Include="WebEssentials.AspNetCore.ServiceWorker" Version="1.0.11" />
 		<PackageReference Include="WebEssentials.AspNetCore.StaticFilesWithCache" Version="1.0.3" />
 		<PackageReference Include="WebMarkupMin.AspNetCore7" Version="2.13.7" />

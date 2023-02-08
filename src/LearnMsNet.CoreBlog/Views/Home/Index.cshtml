@@ -1,8 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IAsyncEnumerable<PostItem>
+@inject IOptionsSnapshot<BlogSettings> settings
+@{
+    int currentPage = int.Parse(ViewContext.RouteData.Values[BlogConstants.PAGE] as string ?? "0");
+
+    int totalPosts;
+    totalPosts = int.TryParse(ViewData[BlogConstants.TOTALPOSTCOUNT].ToString(), out totalPosts) ? totalPosts : 0;
+
+    int totalPages = (totalPosts / settings.Value.PostsPerPage) - (totalPosts % settings.Value.PostsPerPage == 0 ? 1 : 0);
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@await foreach (var post in Model)
+{
+    await Html.RenderPartialAsync("Post.cshtml", post);
+}
+
+<nav class="pagination container" aria-label="Pagination">
+    @if ((await Model.AnyAsync()) && currentPage < totalPages)
+    {
+        <a rel="prev" href="@ViewData[BlogConstants.PREV]" title="Older posts">&laquo; Older</a>
+    }
+    @if (currentPage > 0)
+    {
+        <a rel="next" href="@ViewData[BlogConstants.NEXT]" title="Newer posts">Newer &raquo;</a>
+    }
+    <br /><br />
+
+    @section Head {
+        @if ((await Model.AnyAsync()) && currentPage < totalPages)
+        {
+            <link rel="prev" href="@ViewData[BlogConstants.PREV]" />
+        }
+        @if (currentPage > 0)
+        {
+            <link rel="next" href="@ViewData[BlogConstants.NEXT]" />
+        }
+    }
+</nav>
+
+@{await Html.RenderPartialAsync("_SocialSharing", ViewData[BlogConstants.TITLE]);}

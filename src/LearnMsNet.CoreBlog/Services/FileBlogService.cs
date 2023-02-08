@@ -1,12 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using System.Xml.XPath;
-
+﻿
 namespace LearnMsNet.CoreBlog.Services;
 
 public class FileBlogService : IBlogService
 {
-    private const string POSTS = "Data\\Posts";
+    private const string POSTS = "Posts";
     private const string FILES = "files";
     private readonly string _folder;
     private readonly IHttpContextAccessor _contextAccessor;
@@ -20,7 +17,7 @@ public class FileBlogService : IBlogService
         {
             throw new ArgumentNullException(nameof(env));
         }
-        _folder = Path.Combine(env.WebRootPath, POSTS);
+        _folder = Path.Combine(env.WebRootPath, "Data", POSTS);
         _contextAccessor = contextAccessor;
         Initialize();
     }
@@ -31,10 +28,7 @@ public class FileBlogService : IBlogService
         SortPosts();
     }
 
-    private void SortPosts()
-    {
-        throw new NotImplementedException();
-    }
+    protected void SortPosts() => _posts.Sort((p1, p2) => p2.PublishDate.CompareTo(p1.PublishDate));
 
     private void LoadPosts()
     {

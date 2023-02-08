@@ -106,7 +106,7 @@ namespace LearnMsNet.CoreBlog.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NetCoreSlimBlog.
+        ///   Looks up a localized string similar to Learn Ms Net Core Blog.
         /// </summary>
         public static string MiniblogCore {
             get {

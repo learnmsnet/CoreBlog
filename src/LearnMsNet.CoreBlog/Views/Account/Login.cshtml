@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+@{
+    ViewData[BlogConstants.TITLE] = LearnMsNet.CoreBlog.Config.Resources.Login;
+    ViewData[BlogConstants.DESCRIPTION] = LearnMsNet.CoreBlog.Config.Resources.SignInToTheWebsite;
+}
+
+@section head {
+
+}
+
+<section class="content">
+    <form method="post" id="login" aria-labelledby="legend" asp-route-returnUrl="@ViewData[BlogConstants.RETURNURL]">
+        <div asp-validation-summary="All"></div>
+        <h3 id="legend">Sign in</h3>
+
+        <div class="row">
+            <input asp-for="UserName" aria-label="Username" autofocus required placeholder="Username" />
+        </div>
+
+        <div class="row">
+            <input asp-for="Password" aria-label="Password" required placeholder="Password" />
+        </div>
+
+        <div class="row">
+            <input asp-for="RememberMe" />
+            <label asp-for="RememberMe">Remember me</label>
+        </div>
+
+        <div class="row">
+            <input class="btn btn-info" type="submit" value="Sign in" />
+        </div>
+    </form>
+</section>

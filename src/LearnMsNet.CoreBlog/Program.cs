@@ -1,16 +1,4 @@
-using LearnMsNet.CoreBlog.Config;
-using LearnMsNet.CoreBlog.Services;
 
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using WebEssentials.AspNetCore.OutputCaching;
-using WebEssentials.AspNetCore.ServiceWorker;
-
-using WebMarkupMin.AspNetCore7;
-using WebMarkupMin.Core;
-
-using WilderMinds.MetaWeblog;
 
 using IMarkupLogger = WebMarkupMin.Core.Loggers.ILogger;
 using MarkupNullLogger = WebMarkupMin.Core.Loggers.NullLogger;
@@ -36,7 +24,7 @@ builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMetaWeblog<MetaWeblogService>();
 
 builder.Services.AddProgressiveWebApp(
-    new PwaOptions
+    new WebEssentials.AspNetCore.Pwa.PwaOptions
     {
         OfflineRoute = "shared/offline"
     });
@@ -75,7 +63,7 @@ builder.Services.AddSingleton<IMarkupLogger, MarkupNullLogger>();
 builder.Services.AddWebOptimizer(
     pipeline =>
     {
-        pipeline.MinifyJsFiles();
+        // pipeline.MinifyJsFiles();
         pipeline.CompileScssFiles()
             .InlineImages(1);
     });
